@@ -1,0 +1,32 @@
+///scr_get_input()
+
+//set keyboard key values
+key_right = keyboard_check(ord('D'));
+key_left = keyboard_check(ord('A'));
+up_key = keyboard_check(ord('W'));
+down_key = keyboard_check(ord('S'));
+key_jump = keyboard_check(ord('J'));
+attack_key = keyboard_check(ord('K'));
+pause_key = keyboard_check_pressed(vk_escape);
+spell_key = keyboard_check_pressed(ord('L'));
+weapon_swap_key = keyboard_check_pressed(ord('I'));
+
+// Get the axis
+// This returns 1 if either key pressed, and 0 if both or no keys pressed
+x_axis = (key_right - key_left);
+y_axis = (down_key - up_key);
+
+// Check for gamepad input
+gamepad = -1
+if (gamepad_is_connected(0)) gamepad = 0;
+if (gamepad_is_connected(4)) gamepad = 4;
+if (gamepad >= 0) {
+    gamepad_set_axis_deadzone(gamepad, .35);
+    x_axis = gamepad_axis_value(gamepad, gp_axislh);
+    y_axis = gamepad_axis_value(gamepad, gp_axislv);
+    key_jump = gamepad_button_check_pressed(gamepad, gp_face1);
+    attack_key = gamepad_button_check_pressed(gamepad, gp_face2);
+    spell_key = gamepad_button_check_pressed(gamepad, gp_face3);
+    pause_key = gamepad_button_check_pressed(gamepad, gp_start);
+    weapon_swap_key = gamepad_button_check_pressed(gamepad, gp_face4);
+}

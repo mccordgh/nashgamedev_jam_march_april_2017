@@ -3,7 +3,7 @@
   <spriteName>spr_player</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-10</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -26,11 +26,18 @@
           <argument>
             <kind>1</kind>
             <string>///Initialize Variables
+if (instance_number(obj_player) &gt; 1) instance_destroy();
+
+// set state on init
+state = scr_move_state;
+
+// setup variables
 grav = 0.2;
 hspd = 0;
 vspd = 0;
-jumpspeed = 7;
-movespeed = 4;
+jumpspeed = 5;
+movespeed = 3;
+growth = 0;
 </string>
           </argument>
         </arguments>
@@ -111,7 +118,56 @@ y += vspd;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Collision
+            <string>/// Execute current state script
+script_execute(state);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_grow_pill">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Collision with grow pill
+
+growth += 1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_enemy_parent">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Collision with enemy parent obj
 </string>
           </argument>
         </arguments>

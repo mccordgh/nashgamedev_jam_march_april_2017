@@ -8,19 +8,41 @@
   <sprites name="sprites">
     <sprite>sprites\spr_wall</sprite>
     <sprite>sprites\spr_player</sprite>
+    <sprite>sprites\spr_input_manager</sprite>
+    <sprite>sprites\spr_car_guy</sprite>
+    <sprite>sprites\spr_grow_pill</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_generic_1</background>
     <background>background\bg_generic_2</background>
   </backgrounds>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\scr_get_input.gml</script>
+    <script>scripts\scr_move_state.gml</script>
+    <script>scripts\scr_grow_player.gml</script>
+  </scripts>
   <objects name="objects">
-    <object>objects\obj_player</object>
-    <object>objects\obj_wall</object>
-    <object>objects\obj_block_parent</object>
+    <objects name="Core">
+      <object>objects\obj_input_manager</object>
+    </objects>
+    <objects name="enemy">
+      <object>objects\obj_enemy_parent</object>
+      <object>objects\obj_cart_guy</object>
+    </objects>
+    <objects name="player">
+      <object>objects\obj_player</object>
+    </objects>
+    <objects name="room">
+      <object>objects\obj_wall</object>
+      <object>objects\obj_block_parent</object>
+    </objects>
+    <objects name="items">
+      <object>objects\obj_grow_pill</object>
+    </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\room0</room>
+    <room>rooms\r_level_one</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
